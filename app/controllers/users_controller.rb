@@ -14,6 +14,8 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @user.phones.build
+    @user.phones.build
+    @user.phones.build
   end
 
   # GET /users/1/edit
@@ -54,6 +56,8 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, phones_attributes: [])
+      # params.require(:user).permit(:first_name, :last_name, phones_attributes: [])
+      # params.require(:user).permit(:first_name, :last_name, phones_attributes: {}) # and this doesn't work
+      params.require(:user).permit(:first_name, :last_name, phones_attributes: [:id, :kind, :number, :_destroy])
     end
 end
